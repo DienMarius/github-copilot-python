@@ -1,0 +1,21 @@
+{
+  "description": "Reusable Copilot prompt templates for the Sudoku project.",
+  "prompts": [
+    {
+      "name": "unique-solution-generator",
+      "template": "In starter/sudoku_logic.py, review {function}. Preserve the 9x9 integer-list board representation where 0 means empty. Add a bounded solution counter that stops after two solutions, reject clue removals unless exactly one solution remains, and propose a focused unittest for unique, ambiguous, and unsolvable fixtures."
+    },
+    {
+      "name": "accessible-ui-review",
+      "template": "Review starter/templates/index.html, starter/static/main.js, and starter/static/styles.css for WCAG 2.1 AA issues. Check keyboard access, focus visibility, labels, live status messages, contrast, and responsive layout. Return only concrete findings and small fixes."
+    },
+    {
+      "name": "api-error-hardening",
+      "template": "In starter/app.py, audit {route} for malformed JSON, invalid dimensions, wrong types, and out-of-range values. Keep routes small, use consistent {\"error\": \"message\"} JSON responses, and add a regression test for each failure case."
+    },
+    {
+      "name": "focused-change-review",
+      "template": "Make the smallest change needed for {behavior}. First state the current limitation, then implement it within the existing module boundary, and finish with one executable validation command and its expected result."
+    }
+  ]
+}

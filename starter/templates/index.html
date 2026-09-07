@@ -2,17 +2,24 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Sudoku Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sudoku</title>
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  <h1>Sudoku Game</h1>
-  <div id="sudoku-board"></div>
-  <div class="controls">
-    <button id="new-game">New Game</button>
-    <button id="check-solution">Check Solution</button>
-    <span id="message"></span>
-  </div>
+  <main class="app-shell">
+    <header class="topbar"><div><p class="eyebrow">Daily logic practice</p><h1>Sudoku</h1></div><button id="theme-toggle" class="icon-button" type="button" aria-label="Toggle dark mode">◐</button></header>
+    <section class="game-layout">
+      <div class="game-panel">
+        <div class="game-heading"><div><h2 id="difficulty-label">Medium puzzle</h2><p id="timer">00:00</p></div><label>Difficulty<select id="difficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option></select></label></div>
+        <div id="sudoku-board" role="grid" aria-label="Sudoku puzzle"></div>
+        <div class="number-tracker" aria-label="Number tracker"><h3>Numbers used</h3><div id="number-palette" class="number-palette"></div><p id="number-status" role="status" aria-live="polite">Select a number to highlight it.</p></div>
+        <div class="controls"><button id="new-game" type="button">New puzzle</button><button id="hint" type="button">Hint</button><button id="note-mode" type="button" aria-pressed="false">Note mode: off</button><button id="solve-animation" type="button">Show solve steps</button><button id="check-solution" type="button">Check</button></div>
+        <p id="message" role="status" aria-live="polite"></p>
+      </div>
+      <aside class="scores-panel"><div class="scores-heading"><h2>Top 10</h2><span>Local scores</span></div><ol id="scores"></ol></aside>
+    </section>
+  </main>
   <script src="/static/main.js"></script>
 </body>
 </html>
