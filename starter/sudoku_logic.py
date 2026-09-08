@@ -110,3 +110,6 @@ def generate_puzzle(clues: int = 36) -> tuple[list[list[int]], list[list[int]]]:
         if remove_cells(board, clues):
             return deep_copy(board), solution
     raise RuntimeError(f'Could not generate a unique puzzle with {clues} clues')
+
+
+#sudoku logic revised from copilot suggestion.
