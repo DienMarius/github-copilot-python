@@ -1,8 +1,21 @@
-dataset_source: Amazon Reviews 2023 from Hugging Face with a deterministic fallback for offline execution
-sample_limit: 100
-metadata_limit: 100
-top_rating_filter: 4.5
-high_rating_cutoff: 4.7
-cleaned_percentage: 60.0
-key_finding: 60 products scored at least 4.7 stars and had a known price.
-exported_files: ['top_products.csv', 'top_products.parquet']
+1. How did you load the reviews and metadata datasets safely?
+Answer: I streamed the Amazon Reviews 2023 reviews JSONL file and metadata Parquet file from Hugging Face. Each for loop stops after 100 records, which keeps the sample bounded and avoids loading the full datasets into memory.
+
+2. What differences did you observe between the reviews and metadata DataFrames?
+Answer: The reviews preview contains ratings, written titles, review text, purchase information, and product identifiers. The metadata preview contains product titles, average ratings, prices, categories, and descriptive fields, so the two DataFrames describe customer experiences and product attributes from different perspectives.
+
+3. How did you handle missing or non-numeric values?
+Answer: I converted prices and ratings with pandas numeric conversion, turning missing or non-numeric values into NaN. I removed incomplete records where required and filtered out products without a known price before calculating the top-products results.
+
+4. How does your product lookup function handle errors?
+Answer: get_product returns a numeric price for a matching title, but catches missing titles, missing prices, invalid inputs, and empty matches. It returns a readable error message instead of allowing a lookup failure to stop the analysis.
+
+5. Why did you choose the 4.5 rating filter and the 4.7 dashboard cutoff?
+Answer: The 4.5 filter identifies products that are already highly rated while requiring a title and known price. The stricter 4.7 cutoff narrows the dashboard to the most meaningful products, making the sorted table and final scatterplot easier to interpret.
+
+6. What did the visualizations reveal about price and ratings?
+Answer: The histogram shows how prices are distributed among products rated at least 4.5. The price-versus-rating scatterplot makes it possible to compare cost with quality; the points show that a higher price does not automatically guarantee a higher rating, so both measures should be considered together.
+
+7. Why did you export the cleaned data to both CSV and Parquet?
+Answer: CSV is easy to open in a spreadsheet and share with non-technical users. Parquet is more efficient for typed analytical data and preserves a structure that pandas can reload quickly, so providing both formats supports different follow-up workflows.
+
