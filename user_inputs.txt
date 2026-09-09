@@ -1,0 +1,8 @@
+dataset_source: Amazon Reviews 2023 from Hugging Face with a deterministic fallback for offline execution
+sample_limit: 100
+metadata_limit: 100
+top_rating_filter: 4.5
+high_rating_cutoff: 4.7
+cleaned_percentage: 60.0
+key_finding: 60 products scored at least 4.7 stars and had a known price.
+exported_files: ['top_products.csv', 'top_products.parquet']
